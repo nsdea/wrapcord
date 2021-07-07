@@ -18,7 +18,7 @@ class Message:
         self.channel_id = channel_id
         self.channel = channel.Channel(channel_id)
         self.message_id = message_id
-        self.author = user.User(user_id=data['author']['id'])
+        self.author_id = data['author']['id']
     
     def __str__(self) -> str:
         return self.content

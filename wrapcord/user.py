@@ -1,10 +1,15 @@
-import main
+from wrapcord import main
+from wrapcord import exceptions
 
 class User:
     def __init__(self, user_id: int):
         data = main.get_request(f'users/{user_id}')
-     
-        self.username = data['username']
+
+        try:
+            self.username = data['username']
+        except KeyError:
+            raise exceptions.UserNotFound(user_id)
+            
         self.name = self.username
         self.discriminator = data['discriminator']
         self.tag = self.discriminator
